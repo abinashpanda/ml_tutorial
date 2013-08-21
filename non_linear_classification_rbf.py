@@ -10,9 +10,6 @@ figure = plt.figure()
 
 X, y = make_moons(n_samples=150)
 
-plt.scatter(X[:, 0], X[:, 1], c=y, label='Actual Data')
-plt.title('Linearly Non-separable')
-
 clf = SVC(kernel='rbf')
 clf.fit(X, y)
 
@@ -32,14 +29,20 @@ levels = [-1.0, 0, 1,0]
 colors = 'k'
 linestyles = ['dashed', 'solid', 'dashed']
 
+plt.subplot(1, 2, 1)
+plt.xlabel('X1')
+plt.ylabel('X2')
+plt.scatter(X[:, 0], X[:, 1], c=y, label='Actual Data')
+plt.title('Linearly Non-separable')
 plt.contour(X_, Y_, Z, colors=colors, levels=levels, linestyles=linestyles)
 plt.scatter(clf.support_vectors_[:, 0], clf.support_vectors_[:, 1], s=80, facecolor='none', label='Support Vectors')
 plt.legend(loc='best')
 
-print 'The accuracy score', accuracy_score(clf.predict(X), y)
-
-
-figure2 = plt.figure()
+plt.subplot(1, 2, 2)
+plt.xlabel('X1')
+plt.ylabel('X2')
+plt.title('Testing')
 plt.scatter(X[:, 0], X[:, 1], c=clf.predict(X), label='Predicted Output')
+plt.text(-1.0, -0.5, 'The accuracy score is '+str(accuracy_score(y, clf.predict(X))))
 plt.legend(loc='best')
 plt.show()
