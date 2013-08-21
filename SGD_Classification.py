@@ -31,6 +31,8 @@ def plot_sgd_classifier(num_samples, clt_std):
 	linestyles = ['dashed', 'solid', 'dashed']
 
 	ax = plt.axes()
+	plt.xlabel('X1')
+	plt.ylabel('X2')
 	ax.contour(X_, Y_, Z, colors=colors, levels=levels, linestyles=linestyles, labels='Boundary')	
 	ax.scatter(X[:,0], X[:,1], c=y)
 
