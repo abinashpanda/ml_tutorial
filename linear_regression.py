@@ -50,6 +50,9 @@ if __name__ == '__main__':
 	#clf_bayesian.fit(feature_generator(X, order), y)
 
 	plt.scatter(X, y, c='r', label='Actual Data')
+	plt.xlabel('X')
+	plt.ylabel('y')
+	plt.title('Linear Regression')
 	plot_(clf, feature_generator, order, np.min(X), np.max(X), 'm', 'Ridge Regression')
 	plot_(clf_biased, feature_generator, order, np.min(X), np.max(X), 'c', 'Linear Regression without Regularization')
 	#plot_(clf_bayesian, feature_generator, order, np.min(X), np.max(X), 'k', 'Bayesian Ridge Regression')	
