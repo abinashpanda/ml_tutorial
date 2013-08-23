@@ -1,7 +1,7 @@
 ml_tutorial
 ===========
 
-Machine Learning Code snippets using sklearn with plotting of relevant data.
+Machine Learning Code snippets using sklearn and pybrain with plotting of relevant data.
 
 REQUIREMENTS
 ============
@@ -10,3 +10,4 @@ matplotlib __version__ = 1.2.1
 scipy __version__ = 0.12  
 numpy __version__ = 1.7.1  
 docopt (https://github.com/docopt/docopt)  
+pybrain __version__ =  0.31 (https://github.com/pybrain/pybrain)  
