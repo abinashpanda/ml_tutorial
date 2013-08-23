@@ -13,7 +13,7 @@ Options:
 
 from docopt import docopt
 
-from sklearn.datasets import make_moons
+from sklearn.datasets import make_blobs
 
 from pybrain.datasets import ClassificationDataSet
 from pybrain.utilities import percentError
@@ -26,12 +26,18 @@ from matplotlib import animation
 import numpy as np
 
 arguments = docopt(__doc__)
-print arguments
 
 num_hidden_layers = map(int, arguments['<layers>'])
 max_iters = int(arguments['<iters>'])
 
-X, y = make_moons(n_samples=1000)
+X1, y1 = make_blobs(n_samples=int(arguments['<samples>'])/2, centers=2, \
+				  cluster_std=0.6)
+X2, y2 = make_blobs(n_samples=int(arguments['<samples>'])/2, centers=2, \
+				  cluster_std=0.6)
+
+X = np.concatenate((X1, X2))
+y = np.concatenate((y1, y2))
+
 m,n = X.shape
 
 dataset = ClassificationDataSet(n, 1, nb_classes=2) 
@@ -48,7 +54,7 @@ layers += num_hidden_layers
 layers += [trn_data.outdim]
 
 neural_network = buildNetwork(*layers, outclass=SoftmaxLayer)
-trainer = BackpropTrainer(neural_network, dataset=trn_data, verbose=True, \
+trainer = BackpropTrainer(neural_network, dataset=trn_data, verbose=False, \
 						  weightdecay=0.01, momentum=0.1)
 
 
@@ -67,7 +73,7 @@ plt.xlabel('X1')
 plt.ylabel('X2')
 plt.title('Classification of Data using Neural Network')
 
-iter_text = ax.text(1.6, 1, '')
+iter_text = ax.text(0, 0, '')
 
 def setup_plot():
 	iter_text.set_text('')
