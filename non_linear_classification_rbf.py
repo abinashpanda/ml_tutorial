@@ -20,12 +20,12 @@ X_, Y_ = np.meshgrid(x_, y_)
 Z = np.empty(X_.shape)
 
 for (i, j), val in np.ndenumerate(X_):
-	x1 = val
-	x2 = Y_[i, j]
-	p = clf.decision_function([x1, x2])
-	Z[i, j] = p[0]
+    x1 = val
+    x2 = Y_[i, j]
+    p = clf.decision_function([x1, x2])
+    Z[i, j] = p[0]
 
-levels = [-1.0, 0, 1,0]
+levels = [-1.0, 0, 1, 0]
 colors = 'k'
 linestyles = ['dashed', 'solid', 'dashed']
 
@@ -35,7 +35,8 @@ plt.ylabel('X2')
 plt.scatter(X[:, 0], X[:, 1], c=y, label='Actual Data')
 plt.title('Linearly Non-separable')
 plt.contour(X_, Y_, Z, colors=colors, levels=levels, linestyles=linestyles)
-plt.scatter(clf.support_vectors_[:, 0], clf.support_vectors_[:, 1], s=80, facecolor='none', label='Support Vectors')
+plt.scatter(clf.support_vectors_[:, 0], clf.support_vectors_[:, 1], s=80,
+            facecolor='none', label='Support Vectors')
 plt.legend(loc='best')
 
 plt.subplot(1, 2, 2)
@@ -43,6 +44,7 @@ plt.xlabel('X1')
 plt.ylabel('X2')
 plt.title('Testing')
 plt.scatter(X[:, 0], X[:, 1], c=clf.predict(X), label='Predicted Output')
-plt.text(-1.0, -0.5, 'The accuracy score is '+str(accuracy_score(y, clf.predict(X))))
+plt.text(-1.0, -0.5,
+         'The accuracy score is '+str(accuracy_score(y, clf.predict(X))))
 plt.legend(loc='best')
 plt.show()
