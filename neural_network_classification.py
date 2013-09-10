@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
-"""Naval Fate.
-
+"""
 Usage:
   neural_network_classification.py nsamples <s> miters <i> hlayers <l>...
   neural_network_classification.py (-h | --help)
